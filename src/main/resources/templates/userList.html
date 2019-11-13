@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>用户列表</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>名字</th>
+        <th>性别</th>
+        <th colspan="2">操作</th>
+    </tr>
+    </thead>
+    <p th:text="${users[0].userName}"></p>
+    <tbody>
+    <tr th:each="user,indexObject:${users}">
+        <td th:text="${user!=null?user.userId:100}">1001</td>
+        <td th:text="${user.userName}">李雷</td>
+        <td th:text="${user.gender}">man</td>
+        <td>
+            <!--<a th:href="@{/user/deleteUser/{userId}(userId=${user.userId})}">删除</a>-->
+            <a th:href="@{/user/deleteUser(userId=${user.userId})}">删除</a>
+        </td>
+        <td>
+            <a th:href="@{/user/jumpUpdateUser(userId=${user.userId})}">更新</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/user/addUser" method="post">
+    <fieldset>
+        <input type="text" name="userName" />
+        <input type="submit" value="Subscribe!" />
+    </fieldset>
+</form>
+
+
+</body>
+</html>
